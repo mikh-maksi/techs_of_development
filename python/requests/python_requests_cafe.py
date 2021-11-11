@@ -14,4 +14,8 @@ string = str(r.text)
 jsn = json.loads(string)
 # print()
 # print(jsn.get('cafes'))
+<<<<<<< HEAD
 print(jsn.get('cafes')[0].get('Name'))
+=======
+print(jsn.get('cafes')[0].get('Name'))
+>>>>>>> 0da0196fa09794e17329864572a3f2145079896e

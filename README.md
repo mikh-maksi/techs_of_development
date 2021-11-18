@@ -33,3 +33,5 @@ updater.idle()
 ## Рекомендации пользователям
 
 ## Инструкции для разработчиков
+
+![Технологии разработки ПО](https://github.com/mikh-maksi/techs_of_development/blob/main/tech-planet.jpg)

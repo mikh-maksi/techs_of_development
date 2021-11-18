@@ -30,3 +30,6 @@ dispatcher.add_handler(MessageHandler(Filters.all, echo))
 updater.start_polling()
 updater.idle()
 ```
+## Рекомендации пользователям
+
+## Инструкции для разработчиков

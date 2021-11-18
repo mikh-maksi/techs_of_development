@@ -14,3 +14,19 @@
 * [Эхо-бот](https://github.com/mikh-maksi/own-finances-bot/blob/main/step02/02bot_echo.py)
 
 > "Все - получится, если делать"
+
+```python
+from telegram.ext import Updater, MessageHandler, Filters
+
+def echo(update, context):
+    print(update.message.text)
+    update.message.reply_text(update.message.text)
+
+updater = Updater("")
+dispatcher = updater.dispatcher
+
+dispatcher.add_handler(MessageHandler(Filters.all, echo))
+
+updater.start_polling()
+updater.idle()
+```

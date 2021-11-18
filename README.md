@@ -12,3 +12,5 @@
 
 ## Исходные коды
 * [Эхо-бот](https://github.com/mikh-maksi/own-finances-bot/blob/main/step02/02bot_echo.py)
+
+> "Все - получится, если делать"

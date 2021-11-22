@@ -34,24 +34,15 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
-# Define a few command handlers. These usually take the two arguments update and
-# context. Error handlers also receive the raised TelegramError object in error.
-# Best practice would be to replace context with an underscore,
-# since context is an unused local variable.
-# This being an example and not having context present confusing beginners,
-# we decided to have it present as context.
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Hi! Use hey')
 
 
 def info(context: CallbackContext) -> None:
-    """Send the alarm message."""
     job = context.job
     context.bot.send_message(job.context, text='Info')
 
 def remove_job_if_exists(name: str, context: CallbackContext) -> bool:
-    """Remove job with given name. Returns whether job was removed."""
     current_jobs = context.job_queue.get_jobs_by_name(name)
     if not current_jobs:
         return False
@@ -69,10 +60,13 @@ def st(update: Update, context: CallbackContext) -> None:
 def daily(update: Update, context: CallbackContext) -> None:
     # context.job_queue.run_once(info, due, context=chat_id, name=str(chat_id))
     chat_id = update.message.chat_id
-    for i in range(24):
-        b = time(i, 45, 30)
-        context.job_queue.run_daily(info, b, context=chat_id, name=str(chat_id))
-        print(b)
+    b = time(9, 47, 30)
+    context.job_queue.run_daily(info, b, context=chat_id, name=str(chat_id))
+
+    # for i in range(24):
+    #     b = time(i, 45, 30)
+    #     context.job_queue.run_daily(info, b, context=chat_id, name=str(chat_id))
+    #     print(b)
     # print(datetime.now())
     update.message.reply_text('daily')
 
@@ -93,14 +87,10 @@ def stp(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(text)
 
 def main() -> None:
-    """Run bot."""
-    # Create the Updater and pass it your bot's token.
-    updater = Updater("2046760784:AAFhyY_zt48CDVv2X_dGrQXPja58E-kGvWk")
+    updater = Updater("")
 
-    # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
 
-    # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", start))
     dispatcher.add_handler(CommandHandler("st", st))
@@ -108,13 +98,8 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("check", chk))
     dispatcher.add_handler(CommandHandler("stp", stp))
     
-
-    # Start the Bot
     updater.start_polling()
 
-    # Block until you press Ctrl-C or the process receives SIGINT, SIGTERM or
-    # SIGABRT. This should be used most of the time, since start_polling() is
-    # non-blocking and will stop the bot gracefully.
     updater.idle()
 
 

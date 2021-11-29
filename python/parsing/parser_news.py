@@ -16,15 +16,22 @@ def get_content(html):
     print(len(items))
     cars = []
     n= 0
+    links = []
     for item in items:
         n=n+1
         elem = item.find('a', class_='name')
         if elem:
             elem_out = elem.get_text()
-            print(elem_out)
+            # print(elem_out)
+            # print(elem.get('href'))
+            dict1 = {"text":elem.get_text(),"link":elem.get('href')}
+            links.append(dict1)
         else:
             elem_out = ''
-
+        descr = item.find('p')
+        if descr:
+            print(descr.get_text())
+    # print(links)
     print(n)
     return cars
 
